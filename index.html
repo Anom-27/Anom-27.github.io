@@ -1,96 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pritom Kumar Sen Anom — Competitive Programmer</title>
+<meta name="description" content="Pritom Kumar Sen Anom — Competitive Programmer & ICT Undergraduate">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e14;
+    --panel:#10161f;
+    --panel-2:#0d1219;
+    --border:#1e2733;
+    --text:#d8e0e8;
+    --muted:#6b7685;
+    --muted-2:#4a5462;
+    --amber:#ffb454;
+    --amber-dim:#c98d3f;
+    --mint:#7ee3c4;
+    --red-dot:#ff5f56;
+    --yellow-dot:#ffbd2e;
+    --green-dot:#27c93f;
+    --radius:6px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'JetBrains Mono', monospace;
+    font-size:15px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,180,84,0.06), transparent),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 3px);
+  }
+  ::selection{ background:var(--amber); color:#0a0e14; }
 
-pritom@dev: ~/portfolio
-whoami
-about.md
-education.txt
-skills.sh
-projects/
-cp_stats.json
-achievements.log
-certificates/
-contact.txt
-pritom@dev:~$ ./run_portfolio.sh
-Pritom Kumar Sen Anom
-Competitive Programmer
-Passionate about problem solving and exploring Artificial Intelligence, Software Engineering, and Intelligent Systems through continuous learning and practical development.
+  a{ color:var(--mint); text-decoration:none; border-bottom:1px dashed rgba(126,227,196,0.4); }
+  a:hover{ color:var(--amber); border-color:var(--amber); }
 
-export ROLE="Competitive Programmer"
-export UNIVERSITY="MBSTU"
-export FOCUS="AI • Competitive Programming • Software Engineering"
-export SESSION="2023–24"
-$ ls projects/
-$ curl cp_stats
-$ open github
-$ cat contact.txt
-pritom@dev:~$ cat about.md
-A Competitive Programmer and ICT undergraduate who enjoys turning hard problems into clean, working code. Actively solving on Codeforces to sharpen algorithmic thinking, while exploring Artificial Intelligence, Software Engineering, and Intelligent Systems through continuous learning and hands-on development. Believes every unsolved problem is just one correct approach away.
+  .comment{ color:var(--muted); font-family:'IBM Plex Mono', monospace; font-style:italic; }
+  .prompt{ color:var(--mint); }
+  .prompt .path{ color:var(--amber); }
 
-Artificial Intelligence
-Software Engineering
-Intelligent Systems
-🌐 Bangla — Native
-🌐 English — Fluent
-🌐 Hindi — Conversational
-pritom@dev:~$ cat education.txt
-Mawlana Bhashani Science and Technology University
-Department of Information and Communication Technology (ICT)
-Session: 2023–24
-Cantonment Public School and College, Momenshahi
-HSC · Passing Year: 2023
-Jamalpur Zilla School
-SSC · Passing Year: 2021
-pritom@dev:~$ ./skills.sh --list
---lang
-C
---lang
-C++
---lang
-Java
---markup
-HTML
---focus
-Competitive Programming
---mind
-Problem Solving
-pritom@dev:~$ ls -la projects/
-memory_game/
-GitHub →
-A console-based memory game built to test and improve a player's short-term memory. Supports both Single Player and Multiplayer modes for head-to-head recall challenges.
+  header.chrome{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,20,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .titlebar{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 18px; border-bottom:1px solid var(--border);
+  }
+  .dot{ width:11px; height:11px; border-radius:50%; }
+  .dot.red{background:var(--red-dot);} .dot.yellow{background:var(--yellow-dot);} .dot.green{background:var(--green-dot);}
+  .titlebar .name{ margin-left:12px; color:var(--muted); font-size:13px; }
+  .tabs{ display:flex; overflow-x:auto; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar{ display:none; }
+  .tab{
+    padding:9px 16px; font-size:13px; color:var(--muted);
+    border-right:1px solid var(--border); white-space:nowrap; cursor:pointer;
+    transition:color .15s, background .15s;
+  }
+  .tab:hover{ color:var(--text); background:rgba(255,255,255,0.02); }
+  .tab.active{ color:var(--amber); background:var(--panel); }
 
-C++
-Console App
-Single & Multiplayer
-pritom@dev:~$ curl -s codeforces.com/api/user.info?handles=Anom27
-{
-  "handle": "Anom27",
-  "rank": "newbie",
-  "rating": 840,
-  "maxRank": "newbie",
-  "maxRating": 884,
-  "contribution": 0
-}
-→ codeforces.com/profile/Anom27
-pritom@dev:~$ tail -f achievements.log
-🏁
-Contest Participation
-Regularly competes in Codeforces rounds to sharpen algorithmic problem-solving under time pressure.
-🏆
-Programming Awards
-Recognized for programming performance — details to be added.
-pritom@dev:~$ ls -la certificates/
-Certificates and crests will be displayed here — send the images and they'll be added as a gallery.
+  main{ max-width:840px; margin:0 auto; padding:0 20px; }
 
-pritom@dev:~$ cat contact.txt
-email
-sen809894@gmail.com
-phone
-+880 1997-931225
-github
-github.com/Anom-27
-codeforces
-codeforces.com/profile/Anom27
-location
-Tangail, Bangladesh 🇧🇩
-$ mail -s "Hello" sen809894@gmail.com
-pritom@dev:~$ _
-© 2026 Pritom Kumar Sen Anom. Built with HTML, CSS & a lot of curly braces.
+  .hero{
+    min-height:82vh; display:flex; flex-direction:column; justify-content:center;
+    padding:60px 0 40px;
+  }
+  .hero .lead{ color:var(--muted); font-size:13px; margin-bottom:18px; }
+  .hero h1{
+    font-size:clamp(28px, 6vw, 52px); font-weight:800; letter-spacing:-0.5px;
+    color:var(--text); min-height:1.2em;
+  }
+  .hero h1 .accent{ color:var(--amber); }
+  .hero .tagline{
+    margin-top:14px; font-size:clamp(14px, 2.4vw, 18px); color:var(--mint);
+    min-height:1.6em;
+  }
+  .cursor{ display:inline-block; width:9px; height:1.05em; background:var(--amber); vertical-align:text-bottom; animation:blink 1s step-end infinite; margin-left:2px;}
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero .sub{ margin-top:22px; color:var(--muted-2); font-size:13px; max-width:520px; }
+  .env-block{
+    margin-top:26px; padding:16px 18px; background:var(--panel);
+    border:1px solid var(--border); border-radius:var(--radius);
+    font-size:12.5px; display:flex; flex-direction:column; gap:6px; max-width:520px;
+  }
+  .env-block .envkey{ color:var(--muted); }
+  .env-block .envval{ color:var(--mint); }
+  .hero .cta-row{ margin-top:26px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    border:1px solid var(--border); padding:9px 16px; border-radius:var(--radius);
+    color:var(--text); font-size:13px; transition:.15s; border-bottom:1px solid var(--border);
+  }
+  .btn:hover{ border-color:var(--amber); color:var(--amber); background:rgba(255,180,84,0.06); }
+  .btn.primary{ border-color:var(--amber-dim); color:var(--amber); }
+  .btn.primary:hover{ background:rgba(255,180,84,0.1); }
+
+  section{ padding:54px 0; border-top:1px solid var(--border); opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; }
+  section.in{ opacity:1; transform:none; }
+  .cmd-line{ color:var(--muted); font-size:13px; margin-bottom:16px; }
+  .cmd-line .p1{ color:var(--mint); }
+  .cmd-line .p2{ color:var(--amber); }
+  .output{
+    background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px 24px;
+  }
+  h2.file-label{
+    font-size:12px; color:var(--muted); letter-spacing:1px; text-transform:uppercase;
+    margin-bottom:10px; font-family:'IBM Plex Mono', monospace;
+  }
+
+  .about-text{ color:var(--text); max-width:640px; }
+  .focus-tags{ margin-top:18px; display:flex; gap:8px; flex-wrap:wrap; }
+  .focus-tags span{
+    font-size:11.5px; color:var(--amber); border:1px solid rgba(255,180,84,0.3);
+    padding:4px 10px; border-radius:20px; background:rgba(255,180,84,0.05);
+  }
+  .locale{ margin-top:18px; padding-top:16px; border-top:1px dashed var(--border); font-size:13px; color:var(--muted); display:flex; gap:22px; flex-wrap:wrap;}
+  .locale b{ color:var(--text); font-weight:500; }
+
+  .edu-timeline{ display:flex; flex-direction:column; gap:18px; }
+  .edu-item{ padding-left:16px; border-left:2px solid var(--border); position:relative; }
+  .edu-item::before{
+    content:''; position:absolute; left:-5px; top:4px; width:8px; height:8px;
+    border-radius:50%; background:var(--amber);
+  }
+  .edu-org{ font-size:18px; color:var(--text); font-weight:700; }
+  .edu-meta{ margin-top:8px; color:var(--muted); font-size:13.5px; }
+  .edu-meta span{ color:var(--mint); }
+
+  .skill-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:10px; }
+  .skill-item{
+    display:flex; align-items:center; gap:10px; padding:11px 14px;
+    background:var(--panel-2); border:1px solid var(--border); border-radius:var(--radius); font-size:13.5px;
+  }
+  .skill-item .flag{ color:var(--amber); }
+
+  .proj{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--panel);
+    padding:20px 22px; margin-bottom:14px;
+  }
+  .proj-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+  .proj-name{ color:var(--amber); font-weight:700; font-size:16px; }
+  .proj-name::before{ content:"📁 "; }
+  .proj-links a{ font-size:12.5px; margin-left:12px; }
+  .proj-desc{ margin-top:10px; color:var(--text); font-size:13.8px; max-width:640px; }
+  .proj-tags{ margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; }
+  .proj-tags span{
+    font-size:11.5px; color:var(--mint); border:1px solid rgba(126,227,196,0.3);
+    padding:3px 9px; border-radius:20px;
+  }
+
+  .cp-json{ font-family:'JetBrains Mono', monospace; font-size:13px; white-space:pre-wrap; }
+  .cp-json .k{ color:var(--muted); }
+  .cp-json .v{ color:var(--amber); }
+  .cp-json .s{ color:var(--mint); }
+  .cp-loading{ color:var(--muted); }
+  .cp-loading::after{ content:''; animation:dots 1.4s steps(4,end) infinite; }
+  @keyframes dots{ 0%,20%{content:'';} 40%{content:'.';} 60%{content:'..';} 80%,100%{content:'...';} }
+  .cp-link-row{ margin-top:16px; font-size:13px; }
+
+  .ach-grid{ display:flex; flex-direction:column; gap:16px; }
+  .ach-item{ display:flex; gap:14px; align-items:flex-start; }
+  .ach-icon{ font-size:20px; line-height:1.4; }
+  .ach-title{ color:var(--text); font-weight:700; font-size:14.5px; }
+  .ach-note{ margin-top:4px; font-size:12.5px; }
+
+  .contact-list{ display:flex; flex-direction:column; gap:10px; }
+  .contact-row{ display:flex; gap:14px; font-size:14px; }
+  .contact-row .k{ color:var(--muted); min-width:110px; }
+
+  footer{ padding:40px 0 70px; color:var(--muted-2); font-size:12.5px; border-top:1px solid var(--border); }
+  footer .fin-prompt{ color:var(--mint); }
+
+  @media (max-width:600px){
+    .titlebar .name{ display:none; }
+    .contact-row{ flex-direction:column; gap:2px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    section{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="chrome">
+  <div class="titlebar">
+    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+    <span class="name">pritom@dev: ~/portfolio</span>
+  </div>
+  <nav class="tabs" id="tabs">
+    <div class="tab" data-target="hero">whoami</div>
+    <div class="tab" data-target="about">about.md</div>
+    <div class="tab" data-target="education">education.txt</div>
+    <div class="tab" data-target="skills">skills.sh</div>
+    <div class="tab" data-target="projects">projects/</div>
+    <div class="tab" data-target="cpstats">cp_stats.json</div>
+    <div class="tab" data-target="achievements">achievements.log</div>
+    <div class="tab" data-target="certificates">certificates/</div>
+    <div class="tab" data-target="contact">contact.txt</div>
+  </nav>
+</header>
+
+<main>
+
+  <section id="hero" class="hero in">
+    <div class="lead">pritom@dev:~$ ./run_portfolio.sh</div>
+    <h1 id="typedName"></h1>
+    <div class="tagline" id="typedTag"></div>
+    <p class="sub">Passionate about problem solving and exploring Artificial Intelligence, Software Engineering, and Intelligent Systems through continuous learning and practical development.</p>
+
+    <div class="env-block">
+      <div><span class="envkey">export</span> ROLE=<span class="envval">"Competitive Programmer"</span></div>
+      <div><span class="envkey">export</span> UNIVERSITY=<span class="envval">"MBSTU"</span></div>
+      <div><span class="envkey">export</span> FOCUS=<span class="envval">"AI • Competitive Programming • Software Engineering"</span></div>
+      <div><span class="envkey">export</span> SESSION=<span class="envval">"2023–24"</span></div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">$ ls projects/</a>
+      <a class="btn" href="#cpstats">$ curl cp_stats</a>
+      <a class="btn" href="https://github.com/Anom-27" target="_blank" rel="noopener">$ open github</a>
+      <a class="btn" href="#contact">$ cat contact.txt</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ cat about.md</div>
+    <div class="output">
+      <p class="about-text">A Competitive Programmer and ICT undergraduate who enjoys turning hard problems into clean, working code. Actively solving on Codeforces to sharpen algorithmic thinking, while exploring <b>Artificial Intelligence</b>, <b>Software Engineering</b>, and <b>Intelligent Systems</b> through continuous learning and hands-on development. Believes every unsolved problem is just one correct approach away.</p>
+      <div class="focus-tags">
+        <span>Artificial Intelligence</span><span>Software Engineering</span><span>Intelligent Systems</span>
+      </div>
+      <div class="locale">
+        <span>🌐 <b>Bangla</b> — Native</span>
+        <span>🌐 <b>English</b> — Fluent</span>
+        <span>🌐 <b>Hindi</b> — Conversational</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ cat education.txt</div>
+    <div class="output">
+      <div class="edu-timeline">
+        <div class="edu-item">
+          <div class="edu-org">Mawlana Bhashani Science and Technology University</div>
+          <div class="edu-meta">Department of <span>Information and Communication Technology (ICT)</span></div>
+          <div class="edu-meta">Session: <span>2023–24</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-org">Cantonment Public School and College, Momenshahi</div>
+          <div class="edu-meta">HSC · Passing Year: <span>2023</span></div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-org">Jamalpur Zilla School</div>
+          <div class="edu-meta">SSC · Passing Year: <span>2021</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ ./skills.sh --list</div>
+    <div class="output">
+      <div class="skill-grid">
+        <div class="skill-item"><span class="flag">--lang</span> C</div>
+        <div class="skill-item"><span class="flag">--lang</span> C++</div>
+        <div class="skill-item"><span class="flag">--lang</span> Java</div>
+        <div class="skill-item"><span class="flag">--markup</span> HTML</div>
+        <div class="skill-item"><span class="flag">--focus</span> Competitive Programming</div>
+        <div class="skill-item"><span class="flag">--mind</span> Problem Solving</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ ls -la projects/</div>
+    <div class="proj">
+      <div class="proj-head">
+        <span class="proj-name">memory_game/</span>
+        <span class="proj-links">
+          <a href="https://github.com/Anom-27" target="_blank" rel="noopener">GitHub →</a>
+        </span>
+      </div>
+      <p class="proj-desc">A console-based memory game built to test and improve a player's short-term memory. Supports both Single Player and Multiplayer modes for head-to-head recall challenges.</p>
+      <div class="proj-tags"><span>C++</span><span>Console App</span><span>Single & Multiplayer</span></div>
+    </div>
+  </section>
+
+  <section id="cpstats">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ curl -s codeforces.com/api/user.info?handles=Anom27</div>
+    <div class="output">
+      <div class="cp-json" id="cpJson"><span class="cp-loading">fetching live data from Codeforces API</span></div>
+      <div class="cp-link-row">→ <a href="https://codeforces.com/profile/Anom27" target="_blank" rel="noopener">codeforces.com/profile/Anom27</a></div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ tail -f achievements.log</div>
+    <div class="output">
+      <div class="ach-grid">
+        <div class="ach-item">
+          <span class="ach-icon">🏁</span>
+          <div>
+            <div class="ach-title">Contest Participation</div>
+            <div class="ach-note comment">Regularly competes in Codeforces rounds to sharpen algorithmic problem-solving under time pressure.</div>
+          </div>
+        </div>
+        <div class="ach-item">
+          <span class="ach-icon">🏆</span>
+          <div>
+            <div class="ach-title">Programming Awards</div>
+            <div class="ach-note comment">Recognized for programming performance — details to be added.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ ls -la certificates/</div>
+    <div class="output">
+      <p class="comment" style="font-size:13.5px;">Certificates and crests will be displayed here — send the images and they'll be added as a gallery.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="cmd-line"><span class="p1">pritom@dev</span>:<span class="p2">~</span>$ cat contact.txt</div>
+    <div class="output">
+      <div class="contact-list">
+        <div class="contact-row"><span class="k">email</span><a href="mailto:sen809894@gmail.com">sen809894@gmail.com</a></div>
+        <div class="contact-row"><span class="k">phone</span><a href="tel:+8801997931225">+880 1997-931225</a></div>
+        <div class="contact-row"><span class="k">github</span><a href="https://github.com/Anom-27" target="_blank" rel="noopener">github.com/Anom-27</a></div>
+        <div class="contact-row"><span class="k">codeforces</span><a href="https://codeforces.com/profile/Anom27" target="_blank" rel="noopener">codeforces.com/profile/Anom27</a></div>
+        <div class="contact-row"><span class="k">location</span><span>Tangail, Bangladesh 🇧🇩</span></div>
+      </div>
+      <div class="cta-row" style="margin-top:20px;">
+        <a class="btn primary" href="mailto:sen809894@gmail.com">$ mail -s "Hello" sen809894@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="fin-prompt">pritom@dev</span>:~$ <span id="footCursor">_</span>
+    <div style="margin-top:8px;">© <span id="year"></span> Pritom Kumar Sen Anom. Built with HTML, CSS & a lot of curly braces.</div>
+  </footer>
+
+</main>
+
+<script>
+  const nameText = "Pritom Kumar Sen Anom";
+  const tagText  = "Competitive Programmer";
+  const nameEl = document.getElementById('typedName');
+  const tagEl  = document.getElementById('typedTag');
+
+  function typeInto(el, text, speed, cb){
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    function step(){
+      if(i <= text.length){
+        el.textContent = text.slice(0, i);
+        el.appendChild(cursor);
+        i++;
+        setTimeout(step, speed);
+      } else if(cb){ cb(); }
+    }
+    step();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    typeInto(nameEl, nameText, 45, () => {
+      setTimeout(() => typeInto(tagEl, tagText, 35), 200);
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  });
+
+  const sections = document.querySelectorAll('main section:not(.hero)');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  sections.forEach(s => io.observe(s));
+
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = document.getElementById(tab.dataset.target);
+      if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+  const allSections = document.querySelectorAll('main section[id]');
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.target === entry.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  allSections.forEach(s => navObserver.observe(s));
+
+  const cpJsonEl = document.getElementById('cpJson');
+  fetch('https://codeforces.com/api/user.info?handles=Anom27')
+    .then(r => r.json())
+    .then(data => {
+      if(data.status !== 'OK') throw new Error(data.comment || 'lookup failed');
+      const u = data.result[0];
+      const rating = u.rating ?? 'unrated';
+      const maxRating = u.maxRating ?? '—';
+      const rank = u.rank ?? 'unrated';
+      const maxRank = u.maxRank ?? '—';
+      cpJsonEl.innerHTML =
+`{
+  <span class="k">"handle"</span>: <span class="s">"${u.handle}"</span>,
+  <span class="k">"rank"</span>: <span class="s">"${rank}"</span>,
+  <span class="k">"rating"</span>: <span class="v">${rating}</span>,
+  <span class="k">"maxRank"</span>: <span class="s">"${maxRank}"</span>,
+  <span class="k">"maxRating"</span>: <span class="v">${maxRating}</span>,
+  <span class="k">"contribution"</span>: <span class="v">${u.contribution}</span>
+}`;
+    })
+    .catch(() => {
+      cpJsonEl.innerHTML =
+`{
+  <span class="k">"handle"</span>: <span class="s">"Anom27"</span>,
+  <span class="k">"rating"</span>: <span class="v">840</span>,
+  <span class="k">"maxRating"</span>: <span class="v">884</span>,
+  <span class="k">"note"</span>: <span class="s">"live fetch blocked by browser — showing last known values"</span>
+}`;
+    });
+</script>
+
+</body>
+</html>
