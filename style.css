@@ -435,7 +435,7 @@ h3{
 }
 
 .contact-value{
-  font-size:8rem;
+  font-size:.8rem;
   font-weight:700;
   color:var(--text);
   white-space:nowrap;
