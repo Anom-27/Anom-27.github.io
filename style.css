@@ -399,15 +399,16 @@ h3{
 .contact-grid{
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
+  justify-content:center;
+  gap:12px;
 }
 
 .contact-card{
   display:flex;
   flex-direction:row;
   align-items:center;
-  gap:8px;
-  padding:12px 18px;
+  gap:9px;
+  padding:14px 22px;
   border-radius:999px;
 }
 
@@ -415,8 +416,8 @@ h3{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:17px;
-  height:17px;
+  width:19px;
+  height:19px;
   flex-shrink:0;
   color:var(--primary);
 }
@@ -435,11 +436,12 @@ h3{
 }
 
 .contact-value{
-  font-size:.94rem;
+  font-size:1.02rem;
   font-weight:700;
   color:var(--text);
   white-space:nowrap;
 }
+
 .muted{
   color:var(--muted);
 }
