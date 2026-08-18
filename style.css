@@ -267,7 +267,7 @@ h3{
 .portrait-card{
   overflow:hidden;
   width:min(100%, 420px);
-  aspect-ratio: 977 / 1119;
+  aspect-ratio: 977 / 1258;
   border-radius:32px;
   border:1px solid var(--line);
   background:var(--card);
