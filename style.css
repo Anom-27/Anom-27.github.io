@@ -475,8 +475,9 @@ h3{
   visibility:hidden;
   transform:translateY(10px);
   transition:all .2s ease;
+  z-index:60;
+  cursor:pointer;
 }
-
 .to-top.show{
   opacity:1;
   visibility:visible;
