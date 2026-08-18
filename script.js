@@ -147,6 +147,17 @@ window.addEventListener("scroll", scrollSpy, {
 scrollSpy();
 
 // ===============================
+// BACK TO TOP CLICK
+// ===============================
+
+toTop.addEventListener("click", (e) => {
+
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+});
+
+// ===============================
 // SMOOTH PAGE LOAD
 // ===============================
 
