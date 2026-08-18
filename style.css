@@ -357,9 +357,23 @@ h3{
   align-items:start;
 }
 
+.timeline-item + .timeline-item{
+  margin-top:24px;
+}
+
+.timeline-divider{
+  height:1px;
+  background:var(--line);
+  margin:24px 0;
+}
+
 .timeline-year{
   color:var(--primary);
   font-weight:800;
+}
+
+.timeline-body h3{
+  margin:0 0 4px;
 }
 
 .timeline-body p{
