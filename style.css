@@ -151,9 +151,10 @@ h3{
 }
 
 h1{
-    font-size: clamp(3rem, 5vw, 4.6rem);
+    font-size: clamp(1.9rem, 3.6vw, 3.1rem);
     letter-spacing: -0.02em;
     line-height: 1.05;
+    white-space: nowrap;
 }
 h2{
   font-size:clamp(2rem, 4vw, 3rem);
@@ -515,18 +516,19 @@ h3{
   .two-col{
     grid-template-columns:1fr;
   }
-
   .hero-portrait{
     order:-1;
   }
-
   .skills-grid,
   .projects-grid{
     grid-template-columns:1fr 1fr;
   }
 }
-
 @media (max-width: 760px){
+  h1{
+    white-space: normal;
+    font-size: clamp(2.1rem, 8vw, 3rem);
+  }
   .nav{
     position:absolute;
     top:76px;
@@ -542,34 +544,27 @@ h3{
     box-shadow:var(--shadow);
     display:none;
   }
-
   .nav.open{display:flex}
-
   .nav a{
     width:100%;
     padding:12px 10px;
   }
-
   .menu-toggle{display:inline-flex}
   .hero-stats,
   .skills-grid,
   .projects-grid{
     grid-template-columns:1fr;
   }
-
   .contact-grid{
     grid-template-columns:1fr;
   }
-
   .timeline-item{
     grid-template-columns:1fr;
     gap:10px;
   }
-
   .footer-inner{
     flex-direction:column;
   }
-
   .section{
     padding:72px 0;
   }
