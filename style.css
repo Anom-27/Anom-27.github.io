@@ -506,16 +506,23 @@ h3{
 }
 
 .achievement-img{
+  display:block;
   width:100%;
   aspect-ratio:4/3;
   overflow:hidden;
   background:#000;
+  cursor:pointer;
 }
 
 .achievement-img img{
   width:100%;
   height:100%;
   object-fit:cover;
+  transition:transform .3s ease;
+}
+
+.achievement-img:hover img{
+  transform:scale(1.04);
 }
 
 .achievement-body{
