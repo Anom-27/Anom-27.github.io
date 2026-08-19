@@ -190,15 +190,28 @@ async function loadCodeforces(card, handle) {
     }
 
     try {
-        const res = await fetch("https://codeforces.com/api/user.status?handle=" + encodeURIComponent(handle));
-        const data = await res.json();
-        if (data.status !== "OK") throw new Error("cf status error");
         const solved = new Set();
-        data.result.forEach(sub => {
-            if (sub.verdict === "OK") {
-                solved.add(sub.problem.contestId + sub.problem.index);
-            }
-        });
+        const batchSize = 10000;
+        let from = 1;
+
+        while (true) {
+            const res = await fetch(
+                "https://codeforces.com/api/user.status?handle=" + encodeURIComponent(handle) +
+                "&from=" + from + "&count=" + batchSize
+            );
+            const data = await res.json();
+            if (data.status !== "OK") throw new Error("cf status error");
+
+            data.result.forEach(sub => {
+                if (sub.verdict === "OK") {
+                    solved.add(sub.problem.contestId + sub.problem.index);
+                }
+            });
+
+            if (data.result.length < batchSize) break;
+            from += batchSize;
+        }
+
         setStat(card, "solved", solved.size);
     } catch (err) {
         setStat(card, "solved", "N/A");
@@ -229,29 +242,4 @@ async function loadAtcoder(card, handle) {
         const last = history[history.length - 1];
         const maxRating = Math.max(...history.map(h => h.NewRating));
         setStat(card, "rating", last.NewRating ?? "N/A");
-        setStat(card, "rank", maxRating ?? "—");
-    } catch (err) {
-        setStat(card, "rating", "N/A");
-        setStat(card, "rank", "N/A");
-    }
-
-    try {
-        const res = await fetch("https://kenkoooo.com/atcoder/atcoder-api/v3/user/ac_rank?user=" + encodeURIComponent(handle));
-        const data = await res.json();
-        setStat(card, "solved", data.count ?? "N/A");
-    } catch (err) {
-        setStat(card, "solved", "N/A");
-    }
-}
-
-document.querySelectorAll(".cp-card").forEach((card) => {
-    const platform = card.dataset.cp;
-    const handle = card.dataset.handle;
-    if (platform === "codeforces") loadCodeforces(card, handle);
-    if (platform === "codechef") loadCodechef(card, handle);
-    if (platform === "atcoder") loadAtcoder(card, handle);
-});
-
-// ===============================
-// END
-// ===============================
+        setStat(card, "rank", maxRating ??
