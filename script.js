@@ -190,33 +190,9 @@ async function loadCodeforces(card, handle) {
     }
 
     try {
-        const solved = new Set();
-        const batchSize = 10000;
-        let from = 1;
-        let iterations = 0;
-
-        while (iterations < 50) {
-            const res = await fetch(
-                "https://codeforces.com/api/user.status?handle=" + encodeURIComponent(handle) +
-                "&from=" + from + "&count=" + batchSize
-            );
-            const data = await res.json();
-            if (data.status !== "OK") throw new Error("cf status error");
-
-            const received = data.result.length;
-
-            data.result.forEach(sub => {
-                if (sub.verdict === "OK") {
-                    solved.add(sub.problem.contestId + sub.problem.index);
-                }
-            });
-
-            if (received === 0) break;
-            from += received;
-            iterations++;
-        }
-
-        setStat(card, "solved", solved.size);
+        const res = await fetch("https://codeforces-stats.tashif.codes/" + encodeURIComponent(handle));
+        const data = await res.json();
+        setStat(card, "solved", data.solved_problems_count ?? "N/A");
     } catch (err) {
         setStat(card, "solved", "N/A");
     }
