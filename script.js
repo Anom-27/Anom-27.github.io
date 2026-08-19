@@ -176,17 +176,26 @@ function setStat(card, field, value) {
     if (el) el.textContent = value;
 }
 
+function setUpdatedNow(card) {
+    const el = card.querySelector('[data-field="updated"]');
+    if (el) {
+        const today = new Date().toISOString().split("T")[0];
+        el.textContent = "Updated: " + today + " · Keep solving, keep improving.";
+    }
+}
+
 async function loadCodeforces(card, handle) {
+    setUpdatedNow(card);
     try {
         const res = await fetch("https://codeforces.com/api/user.info?handles=" + encodeURIComponent(handle));
         const data = await res.json();
         if (data.status !== "OK") throw new Error("cf error");
         const user = data.result[0];
         setStat(card, "rating", user.rating ?? "Unrated");
-        setStat(card, "rank", user.rank ? user.rank.replace(/\b\w/g, c => c.toUpperCase()) : "—");
+        setStat(card, "maxrating", user.maxRating ?? "N/A");
     } catch (err) {
         setStat(card, "rating", "N/A");
-        setStat(card, "rank", "N/A");
+        setStat(card, "maxrating", "N/A");
     }
 
     try {
@@ -199,21 +208,23 @@ async function loadCodeforces(card, handle) {
 }
 
 async function loadCodechef(card, handle) {
+    setUpdatedNow(card);
     try {
         const res = await fetch("https://codechef-api.vercel.app/handle/" + encodeURIComponent(handle));
         const data = await res.json();
         if (!data || data.success === false) throw new Error("cc error");
         setStat(card, "rating", data.currentRating ?? "N/A");
-        setStat(card, "rank", data.stars ?? "—");
+        setStat(card, "maxrating", data.stars ?? "—");
         setStat(card, "solved", data.problemsSolved ?? data.fullySolved ?? "N/A");
     } catch (err) {
         setStat(card, "rating", "N/A");
-        setStat(card, "rank", "N/A");
+        setStat(card, "maxrating", "N/A");
         setStat(card, "solved", "N/A");
     }
 }
 
 async function loadAtcoder(card, handle) {
+    setUpdatedNow(card);
     try {
         const res = await fetch("https://atcoder.jp/users/" + encodeURIComponent(handle) + "/history/json");
         if (!res.ok) throw new Error("atc error");
@@ -222,10 +233,10 @@ async function loadAtcoder(card, handle) {
         const last = history[history.length - 1];
         const maxRating = Math.max(...history.map(h => h.NewRating));
         setStat(card, "rating", last.NewRating ?? "N/A");
-        setStat(card, "rank", maxRating ?? "—");
+        setStat(card, "maxrating", maxRating ?? "N/A");
     } catch (err) {
         setStat(card, "rating", "N/A");
-        setStat(card, "rank", "N/A");
+        setStat(card, "maxrating", "N/A");
     }
 
     try {
@@ -237,7 +248,7 @@ async function loadAtcoder(card, handle) {
     }
 }
 
-document.querySelectorAll(".cp-card").forEach((card) => {
+document.querySelectorAll(".cp-detail-card").forEach((card) => {
     const platform = card.dataset.cp;
     const handle = card.dataset.handle;
     if (platform === "codeforces") loadCodeforces(card, handle);

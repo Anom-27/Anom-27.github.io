@@ -486,6 +486,113 @@ h3{
   font-size:.9rem;
 }
 
+.cp-stack{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.cp-detail-card{
+  display:block;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px 32px;
+  transition:transform .2s ease, border-color .2s ease;
+}
+
+.cp-detail-card:hover{
+  transform:translateY(-2px);
+  border-color:var(--primary);
+}
+
+.cp-detail-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:22px;
+}
+
+.cp-detail-bars{
+  display:inline-flex;
+  align-items:flex-end;
+  gap:3px;
+  height:22px;
+}
+
+.cp-detail-bars i{
+  display:block;
+  width:6px;
+  border-radius:2px;
+  background:var(--primary);
+}
+
+.cp-detail-bars i:nth-child(1){height:10px}
+.cp-detail-bars i:nth-child(2){height:18px}
+.cp-detail-bars i:nth-child(3){height:22px}
+
+.cp-detail-head h4{
+  margin:0;
+  font-size:1.15rem;
+  letter-spacing:.06em;
+  color:var(--text);
+}
+
+.cp-detail-head p{
+  margin:2px 0 0;
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+.cp-detail-table{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px 40px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+
+.cp-detail-col{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.cp-detail-row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.cp-detail-label{
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+.cp-detail-value{
+  color:var(--text);
+  font-weight:700;
+}
+
+.cp-detail-link{
+  color:var(--primary);
+}
+
+.cp-detail-strong{
+  color:var(--primary);
+  font-weight:800;
+}
+
+.cp-detail-footer{
+  margin:18px 0 0;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:.85rem;
+}
+
 .achievement-grid{
   display:grid;
   grid-template-columns:repeat(3, minmax(0,1fr));
@@ -678,6 +785,14 @@ h3{
   .cp-grid,
   .achievement-grid{
     grid-template-columns:1fr;
+  }
+
+  .cp-detail-table{
+    grid-template-columns:1fr;
+  }
+
+  .cp-detail-card{
+    padding:22px;
   }
 }
 

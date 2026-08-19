@@ -230,7 +230,7 @@
           <article class="project-card reveal">
             <p class="project-tag">Web Project</p>
             <h3>Tangail District Knowledge Quiz</h3>
-            <p>Test Your Knowledge About Tangail District with instant scoring and feedback includes a full admin panel for managing questions, players and attempt history. Players answer 10 random questions from a bank of 50 questions about Tangail District, Bangladesh. Topics are Crops, History, Culture, Agriculture, Academic Institutions and Geography.</p>
+            <p>A Servlet, JSP, and JDBC-based quiz web app where players answer 10 random questions from a pool of 50, covering Tangail District's history, culture, geography, and academic institutions. Includes a full admin panel for managing questions, players, and attempt history, with scores and question-by-question review saved in MySQL.</p>
             <div class="chips">
               <span>Java</span><span>JSP</span><span>Servlet</span><span>JDBC</span><span>MySQL</span><span>Maven</span>
             </div>
@@ -258,65 +258,116 @@
         </div>
 
         <h3 class="subheading reveal">Competitive Programming Profiles</h3>
-        <div class="cp-grid">
-          <a class="cp-card reveal" href="https://codeforces.com/profile/Anom27" target="_blank" rel="noreferrer" data-cp="codeforces" data-handle="Anom27">
-            <div class="cp-card-top">
-              <span class="cp-platform">Codeforces</span>
-              <span class="cp-handle">@Anom27</span>
+        <div class="cp-stack">
+          <a class="cp-detail-card reveal" href="https://codeforces.com/profile/Anom27" target="_blank" rel="noreferrer" data-cp="codeforces" data-handle="Anom27">
+            <div class="cp-detail-head">
+              <span class="cp-detail-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+              <div>
+                <h4>CODEFORCES</h4>
+                <p>Competitive Programming Progress</p>
+              </div>
             </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="rating">—</span>
-              <span class="cp-stat-label">Rating</span>
+            <div class="cp-detail-table">
+              <div class="cp-detail-col">
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Name</span>
+                  <span class="cp-detail-value">Pritom Kumar Sen Anom</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Handle</span>
+                  <span class="cp-detail-value cp-detail-link">Anom27</span>
+                </div>
+              </div>
+              <div class="cp-detail-col">
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Rating</span>
+                  <span class="cp-detail-value" data-field="rating">—</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Max Rating</span>
+                  <span class="cp-detail-value" data-field="maxrating">—</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Solved</span>
+                  <span class="cp-detail-value cp-detail-strong" data-field="solved">—</span>
+                </div>
+              </div>
             </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="rank">—</span>
-              <span class="cp-stat-label">Rank</span>
-            </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="solved">—</span>
-              <span class="cp-stat-label">Solved</span>
-            </div>
-            <span class="cp-view">View Profile ↗</span>
+            <p class="cp-detail-footer" data-field="updated">Updated: — · Keep solving, keep improving.</p>
           </a>
 
-          <a class="cp-card reveal" href="https://atcoder.jp/users/Anom27" target="_blank" rel="noreferrer" data-cp="atcoder" data-handle="Anom27">
-            <div class="cp-card-top">
-              <span class="cp-platform">AtCoder</span>
-              <span class="cp-handle">@Anom27</span>
+          <a class="cp-detail-card reveal" href="https://atcoder.jp/users/Anom27" target="_blank" rel="noreferrer" data-cp="atcoder" data-handle="Anom27">
+            <div class="cp-detail-head">
+              <span class="cp-detail-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+              <div>
+                <h4>ATCODER</h4>
+                <p>Competitive Programming Progress</p>
+              </div>
             </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="rating">—</span>
-              <span class="cp-stat-label">Rating</span>
+            <div class="cp-detail-table">
+              <div class="cp-detail-col">
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Name</span>
+                  <span class="cp-detail-value">Pritom Kumar Sen Anom</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Handle</span>
+                  <span class="cp-detail-value cp-detail-link">Anom27</span>
+                </div>
+              </div>
+              <div class="cp-detail-col">
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Rating</span>
+                  <span class="cp-detail-value" data-field="rating">—</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Max Rating</span>
+                  <span class="cp-detail-value" data-field="maxrating">—</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Solved</span>
+                  <span class="cp-detail-value cp-detail-strong" data-field="solved">—</span>
+                </div>
+              </div>
             </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="rank">—</span>
-              <span class="cp-stat-label">Highest</span>
-            </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="solved">—</span>
-              <span class="cp-stat-label">Solved</span>
-            </div>
-            <span class="cp-view">View Profile ↗</span>
+            <p class="cp-detail-footer" data-field="updated">Updated: — · Keep solving, keep improving.</p>
           </a>
 
-          <a class="cp-card reveal" href="https://www.codechef.com/users/anom27" target="_blank" rel="noreferrer" data-cp="codechef" data-handle="anom27">
-            <div class="cp-card-top">
-              <span class="cp-platform">CodeChef</span>
-              <span class="cp-handle">@anom27</span>
+          <a class="cp-detail-card reveal" href="https://www.codechef.com/users/anom27" target="_blank" rel="noreferrer" data-cp="codechef" data-handle="anom27">
+            <div class="cp-detail-head">
+              <span class="cp-detail-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+              <div>
+                <h4>CODECHEF</h4>
+                <p>Competitive Programming Progress</p>
+              </div>
             </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="rating">—</span>
-              <span class="cp-stat-label">Rating</span>
+            <div class="cp-detail-table">
+              <div class="cp-detail-col">
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Name</span>
+                  <span class="cp-detail-value">Pritom Kumar Sen Anom</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Handle</span>
+                  <span class="cp-detail-value cp-detail-link">anom27</span>
+                </div>
+              </div>
+              <div class="cp-detail-col">
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Rating</span>
+                  <span class="cp-detail-value" data-field="rating">—</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Stars</span>
+                  <span class="cp-detail-value" data-field="maxrating">—</span>
+                </div>
+                <div class="cp-detail-row">
+                  <span class="cp-detail-label">Solved</span>
+                  <span class="cp-detail-value cp-detail-strong" data-field="solved">—</span>
+                </div>
+              </div>
             </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="rank">—</span>
-              <span class="cp-stat-label">Stars</span>
-            </div>
-            <div class="cp-stat">
-              <span class="cp-stat-value" data-field="solved">—</span>
-              <span class="cp-stat-label">Solved</span>
-            </div>
-            <span class="cp-view">View Profile ↗</span>
+            <p class="cp-detail-footer" data-field="updated">Updated: — · Keep solving, keep improving.</p>
           </a>
         </div>
 
