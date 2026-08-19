@@ -434,6 +434,25 @@
   </footer>
 
   <a href="#top" class="to-top" id="toTop" aria-label="Back to top">↑</a>
+  <script>
+    // Independent, minimal reveal-on-scroll logic.
+    // Kept separate from script.js so a mistake in that file
+    // can never make the page content disappear.
+    try {
+      var revealEls = document.querySelectorAll(".reveal");
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) entry.target.classList.add("visible");
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(function (el) { io.observe(el); });
+    } catch (e) {
+      // If anything goes wrong, just show everything immediately.
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        el.classList.add("visible");
+      });
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

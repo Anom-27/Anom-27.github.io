@@ -645,6 +645,14 @@ h3{
   opacity:0;
   transform:translateY(18px);
   transition:opacity .7s ease, transform .7s ease;
+  animation: reveal-fallback 0s 2.5s forwards;
+}
+
+@keyframes reveal-fallback{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .reveal.visible{
