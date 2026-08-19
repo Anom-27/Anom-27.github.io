@@ -168,5 +168,65 @@ window.addEventListener("load", () => {
 });
 
 // ===============================
+// LIVE CP STATS
+// ===============================
+
+function setStat(card, field, value) {
+    const el = card.querySelector('[data-field="' + field + '"]');
+    if (el) el.textContent = value;
+}
+
+async function loadCodeforces(card, handle) {
+    try {
+        const res = await fetch("https://codeforces.com/api/user.info?handles=" + encodeURIComponent(handle));
+        const data = await res.json();
+        if (data.status !== "OK") throw new Error("cf error");
+        const user = data.result[0];
+        setStat(card, "rating", user.rating ?? "Unrated");
+        setStat(card, "rank", user.rank ? user.rank.replace(/\b\w/g, c => c.toUpperCase()) : "—");
+    } catch (err) {
+        setStat(card, "rating", "N/A");
+        setStat(card, "rank", "N/A");
+    }
+}
+
+async function loadCodechef(card, handle) {
+    try {
+        const res = await fetch("https://codechef-api.vercel.app/handle/" + encodeURIComponent(handle));
+        const data = await res.json();
+        if (!data || data.success === false) throw new Error("cc error");
+        setStat(card, "rating", data.currentRating ?? "N/A");
+        setStat(card, "rank", data.stars ?? "—");
+    } catch (err) {
+        setStat(card, "rating", "N/A");
+        setStat(card, "rank", "N/A");
+    }
+}
+
+async function loadAtcoder(card, handle) {
+    try {
+        const res = await fetch("https://atcoder.jp/users/" + encodeURIComponent(handle) + "/history/json");
+        if (!res.ok) throw new Error("atc error");
+        const history = await res.json();
+        if (!Array.isArray(history) || history.length === 0) throw new Error("no history");
+        const last = history[history.length - 1];
+        const maxRating = Math.max(...history.map(h => h.NewRating));
+        setStat(card, "rating", last.NewRating ?? "N/A");
+        setStat(card, "rank", maxRating ?? "—");
+    } catch (err) {
+        setStat(card, "rating", "N/A");
+        setStat(card, "rank", "N/A");
+    }
+}
+
+document.querySelectorAll(".cp-card").forEach((card) => {
+    const platform = card.dataset.cp;
+    const handle = card.dataset.handle;
+    if (platform === "codeforces") loadCodeforces(card, handle);
+    if (platform === "codechef") loadCodechef(card, handle);
+    if (platform === "atcoder") loadAtcoder(card, handle);
+});
+
+// ===============================
 // END
 // ===============================
