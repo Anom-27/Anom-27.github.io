@@ -530,6 +530,11 @@ h3{
   object-fit:contain;
 }
 
+.cp-logo-cf{
+  width:32px;
+  height:26px;
+}
+
 .cp-logo-atc{
   width:44px;
   height:44px;
