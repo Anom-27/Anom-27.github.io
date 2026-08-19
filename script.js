@@ -188,6 +188,21 @@ async function loadCodeforces(card, handle) {
         setStat(card, "rating", "N/A");
         setStat(card, "rank", "N/A");
     }
+
+    try {
+        const res = await fetch("https://codeforces.com/api/user.status?handle=" + encodeURIComponent(handle));
+        const data = await res.json();
+        if (data.status !== "OK") throw new Error("cf status error");
+        const solved = new Set();
+        data.result.forEach(sub => {
+            if (sub.verdict === "OK") {
+                solved.add(sub.problem.contestId + sub.problem.index);
+            }
+        });
+        setStat(card, "solved", solved.size);
+    } catch (err) {
+        setStat(card, "solved", "N/A");
+    }
 }
 
 async function loadCodechef(card, handle) {
@@ -197,9 +212,11 @@ async function loadCodechef(card, handle) {
         if (!data || data.success === false) throw new Error("cc error");
         setStat(card, "rating", data.currentRating ?? "N/A");
         setStat(card, "rank", data.stars ?? "—");
+        setStat(card, "solved", data.problemsSolved ?? data.fullySolved ?? "N/A");
     } catch (err) {
         setStat(card, "rating", "N/A");
         setStat(card, "rank", "N/A");
+        setStat(card, "solved", "N/A");
     }
 }
 
@@ -216,6 +233,14 @@ async function loadAtcoder(card, handle) {
     } catch (err) {
         setStat(card, "rating", "N/A");
         setStat(card, "rank", "N/A");
+    }
+
+    try {
+        const res = await fetch("https://kenkoooo.com/atcoder/atcoder-api/v3/user/ac_rank?user=" + encodeURIComponent(handle));
+        const data = await res.json();
+        setStat(card, "solved", data.count ?? "N/A");
+    } catch (err) {
+        setStat(card, "solved", "N/A");
     }
 }
 
