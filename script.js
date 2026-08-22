@@ -193,9 +193,20 @@ async function loadCodeforces(card, handle) {
         const user = data.result[0];
         setStat(card, "rating", user.rating ?? "Unrated");
         setStat(card, "maxrating", user.maxRating ?? "N/A");
+        setStat(card, "friends", user.friendOfCount ?? "N/A");
     } catch (err) {
         setStat(card, "rating", "N/A");
         setStat(card, "maxrating", "N/A");
+        setStat(card, "friends", "N/A");
+    }
+
+    try {
+        const res = await fetch("https://codeforces.com/api/user.rating?handle=" + encodeURIComponent(handle));
+        const data = await res.json();
+        if (data.status !== "OK") throw new Error("cf rating error");
+        setStat(card, "contests", data.result.length);
+    } catch (err) {
+        setStat(card, "contests", "N/A");
     }
 
     try {
@@ -216,15 +227,21 @@ async function loadCodechef(card, handle) {
         setStat(card, "rating", data.currentRating ?? "N/A");
         setStat(card, "maxrating", data.stars ?? "—");
         setStat(card, "solved", data.problemsSolved ?? data.fullySolved ?? "N/A");
+        setStat(card, "friends", "N/A");
+        const contestCount = Array.isArray(data.ratingData) ? data.ratingData.length : "N/A";
+        setStat(card, "contests", contestCount);
     } catch (err) {
         setStat(card, "rating", "N/A");
         setStat(card, "maxrating", "N/A");
         setStat(card, "solved", "N/A");
+        setStat(card, "friends", "N/A");
+        setStat(card, "contests", "N/A");
     }
 }
 
 async function loadAtcoder(card, handle) {
     setUpdatedNow(card);
+    setStat(card, "friends", "N/A");
     try {
         const res = await fetch("https://atcoder.jp/users/" + encodeURIComponent(handle) + "/history/json");
         if (!res.ok) throw new Error("atc error");
@@ -234,9 +251,11 @@ async function loadAtcoder(card, handle) {
         const maxRating = Math.max(...history.map(h => h.NewRating));
         setStat(card, "rating", last.NewRating ?? "N/A");
         setStat(card, "maxrating", maxRating ?? "N/A");
+        setStat(card, "contests", history.length);
     } catch (err) {
         setStat(card, "rating", "N/A");
         setStat(card, "maxrating", "N/A");
+        setStat(card, "contests", "N/A");
     }
 
     try {
