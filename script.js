@@ -184,6 +184,15 @@ function setUpdatedNow(card) {
     }
 }
 
+// The profile page reports "471 problems solved for all time", but the public
+// user.status API only exposes 401 of them — solves in private groups and gyms
+// are not returned. Keep the profile figure as a floor, and let the live count
+// take over once it climbs past it.
+function applySolvedBase(card, count) {
+    const base = Number(card.dataset.solvedBase);
+    return Number.isFinite(base) ? Math.max(base, count) : count;
+}
+
 async function loadCodeforces(card, handle) {
     setUpdatedNow(card);
     try {
@@ -210,11 +219,19 @@ async function loadCodeforces(card, handle) {
     }
 
     try {
-        const res = await fetch("https://codeforces-stats.tashif.codes/" + encodeURIComponent(handle));
+        const res = await fetch("https://codeforces.com/api/user.status?handle=" + encodeURIComponent(handle));
         const data = await res.json();
-        setStat(card, "solved", data.solved_problems_count ?? "N/A");
+        if (data.status !== "OK") throw new Error("cf status error");
+        const solved = new Set();
+        data.result.forEach(sub => {
+            if (sub.verdict !== "OK") return;
+            const p = sub.problem;
+            solved.add((p.contestId ?? p.problemsetName ?? "?") + "-" + p.index);
+        });
+        setStat(card, "solved", applySolvedBase(card, solved.size));
     } catch (err) {
-        setStat(card, "solved", "N/A");
+        const base = Number(card.dataset.solvedBase);
+        setStat(card, "solved", Number.isFinite(base) ? base : "N/A");
     }
 }
 
