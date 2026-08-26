@@ -66,36 +66,6 @@ nav.querySelectorAll("a").forEach(link => {
 });
 
 // ===============================
-// SCROLL REVEAL
-// ===============================
-
-const revealItems = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver(
-
-    (entries) => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("visible");
-
-            }
-
-        });
-
-    },
-
-    {
-        threshold: 0.12
-    }
-
-);
-
-revealItems.forEach(item => observer.observe(item));
-
-// ===============================
 // SCROLL SPY
 // ===============================
 
@@ -235,27 +205,6 @@ async function loadCodeforces(card, handle) {
     }
 }
 
-async function loadCodechef(card, handle) {
-    setUpdatedNow(card);
-    try {
-        const res = await fetch("https://codechef-api.vercel.app/handle/" + encodeURIComponent(handle));
-        const data = await res.json();
-        if (!data || data.success === false) throw new Error("cc error");
-        setStat(card, "rating", data.currentRating ?? "N/A");
-        setStat(card, "maxrating", data.stars ?? "—");
-        setStat(card, "solved", data.problemsSolved ?? data.fullySolved ?? "N/A");
-        setStat(card, "friends", "N/A");
-        const contestCount = Array.isArray(data.ratingData) ? data.ratingData.length : "N/A";
-        setStat(card, "contests", contestCount);
-    } catch (err) {
-        setStat(card, "rating", "N/A");
-        setStat(card, "maxrating", "N/A");
-        setStat(card, "solved", "N/A");
-        setStat(card, "friends", "N/A");
-        setStat(card, "contests", "N/A");
-    }
-}
-
 async function loadAtcoder(card, handle) {
     setUpdatedNow(card);
     setStat(card, "friends", "N/A");
@@ -288,7 +237,6 @@ document.querySelectorAll(".cp-detail-card").forEach((card) => {
     const platform = card.dataset.cp;
     const handle = card.dataset.handle;
     if (platform === "codeforces") loadCodeforces(card, handle);
-    if (platform === "codechef") loadCodechef(card, handle);
     if (platform === "atcoder") loadAtcoder(card, handle);
 });
 
