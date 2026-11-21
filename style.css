@@ -368,6 +368,10 @@ h3{
   gap:20px;
 }
 
+.projects-grid{
+  grid-template-columns:repeat(3, minmax(0,1fr));
+}
+
 .project-card .project-tag{
   margin:0 0 12px;
   color:var(--primary);
@@ -381,8 +385,14 @@ h3{
   color:var(--muted);
 }
 
+.project-card{
+  display:flex;
+  flex-direction:column;
+}
+
 .project-links{
-  margin-top:16px;
+  margin-top:auto;
+  padding-top:16px;
 }
 
 .project-links a{
@@ -687,9 +697,12 @@ h3{
     order:-1;
   }
 
-  .skills-grid,
-  .projects-grid{
+  .skills-grid{
     grid-template-columns:1fr 1fr;
+  }
+
+  .projects-grid{
+    grid-template-columns:1fr;
   }
 
   .achievement-grid{
