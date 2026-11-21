@@ -1,29 +1,29 @@
-# Hi, I'm Pritom 👋
+# Pritom Kumar Sen Anom — Portfolio
 
-I'm an ICT undergraduate interested in **Competitive Programming, Artificial Intelligence, and Software Engineering**.
-I enjoy turning hard problems into clean, working code — every unsolved problem is just one correct approach away.
+Personal portfolio of an ICT undergraduate at Mawlana Bhashani Science and Technology University (MBSTU), Bangladesh.
+Live site: **https://anom-27.github.io**
 
-## Tech Stack
+## What's on the site
 
-C • C++ • Java
+- About, education, skills and projects
+- Competitive programming profiles (Codeforces and AtCoder) with live stats
+- Certificates, crest and contest participation
+- Dark and light theme, responsive layout
 
-<!-- Skill icons - customize at https://skillicons.dev -->
-![Skills](https://skillicons.dev/icons?i=c,cpp,java,git)
+## Tech
 
-## Featured Projects
+Plain HTML, CSS and JavaScript. No build step, no framework. Hosted on GitHub Pages.
 
-- Coming soon — new projects will be added here as they're built.
+## Updating the site
 
-## GitHub Stats
+| To change | Edit |
+| --- | --- |
+| Text, projects, achievements | `index.html` |
+| Look and layout | `style.css` |
+| Live stats, theme, menu | `script.js` |
+| Resume download button | add `resume.pdf` to the repo root (the button appears automatically) |
+| Codeforces solved-count floor | `data-solved-base` on the Codeforces card in `index.html` |
 
-![Pritom's GitHub stats](https://github-readme-stats.vercel.app/api?username=Anom-27&show_icons=true&theme=default)
+## Contact
 
-## Contribution Snake
-
-<!-- Set up via https://github.com/Platane/snk (GitHub Action) -->
-<!-- Once configured, replace the line below with your generated snake SVG URL -->
-<!-- Example: ![snake](https://raw.githubusercontent.com/Anom-27/Anom-27/output/snake.svg) -->
-
----
-📫 Reach me: sen809894@gmail.com
-🌐 Portfolio: [anom-27.github.io](https://anom-27.github.io)
+sen809894@gmail.com · [GitHub](https://github.com/Anom-27) · [LinkedIn](https://www.linkedin.com/in/pritom-sen-96684433a)

@@ -138,19 +138,69 @@ window.addEventListener("load", () => {
 });
 
 // ===============================
-// LIVE CP STATS
+// FOOTER YEAR
 // ===============================
 
-function setStat(card, field, value) {
-    const el = card.querySelector('[data-field="' + field + '"]');
-    if (el) el.textContent = value;
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ===============================
+// RESUME BUTTON
+// Shown only when resume.pdf exists in the repo, so it can never be a dead link.
+// ===============================
+
+const resumeActions = document.getElementById("resumeActions");
+if (resumeActions) {
+    fetch("resume.pdf", { method: "HEAD" })
+        .then((res) => { if (!res.ok) resumeActions.hidden = true; })
+        .catch(() => { resumeActions.hidden = true; });
 }
 
-function setUpdatedNow(card) {
+// ===============================
+// LIVE CP STATS
+// ===============================
+//
+// Each stat row is filled from a public API. If a value can't be fetched:
+//   1. a static fallback typed into the card is used (data-fb-rating="1200",
+//      data-fb-maxrating, data-fb-contests, data-fb-solved), otherwise
+//   2. the row is hidden, so the page never shows "N/A".
+
+const MISSING = [undefined, null, "", "N/A"];
+
+function fallbackKey(field) {
+    return "fb" + field.charAt(0).toUpperCase() + field.slice(1);
+}
+
+// Returns true when `value` came from the live API.
+function setStat(card, field, value, isLive = true) {
+    const el = card.querySelector('[data-field="' + field + '"]');
+    if (!el) return false;
+
+    const row = el.closest(".cp-detail-row");
+    const hasValue = !MISSING.includes(value);
+    const shown = hasValue ? value : card.dataset[fallbackKey(field)];
+
+    if (shown === undefined) {
+        if (row) row.hidden = true;
+        return false;
+    }
+
+    el.textContent = shown;
+    if (row) row.hidden = false;
+    if (hasValue && isLive) card.dataset.live = "1";
+    return hasValue && isLive;
+}
+
+// Footer line: only claim "Updated" when something really came from the API.
+function finishCard(card, platformName) {
     const el = card.querySelector('[data-field="updated"]');
-    if (el) {
-        const today = new Date().toISOString().split("T")[0];
+    if (!el) return;
+
+    if (card.dataset.live === "1") {
+        const today = new Date().toLocaleDateString("en-CA"); // YYYY-MM-DD, local time
         el.textContent = "Updated: " + today + " · Keep solving, keep improving.";
+    } else {
+        el.textContent = "Open the " + platformName + " profile for the latest figures.";
     }
 }
 
@@ -164,19 +214,18 @@ function applySolvedBase(card, count) {
 }
 
 async function loadCodeforces(card, handle) {
-    setUpdatedNow(card);
     try {
         const res = await fetch("https://codeforces.com/api/user.info?handles=" + encodeURIComponent(handle));
         const data = await res.json();
         if (data.status !== "OK") throw new Error("cf error");
         const user = data.result[0];
         setStat(card, "rating", user.rating ?? "Unrated");
-        setStat(card, "maxrating", user.maxRating ?? "N/A");
-        setStat(card, "friends", user.friendOfCount ?? "N/A");
+        setStat(card, "maxrating", user.maxRating);
+        setStat(card, "friends", user.friendOfCount);
     } catch (err) {
-        setStat(card, "rating", "N/A");
-        setStat(card, "maxrating", "N/A");
-        setStat(card, "friends", "N/A");
+        setStat(card, "rating", null);
+        setStat(card, "maxrating", null);
+        setStat(card, "friends", null);
     }
 
     try {
@@ -185,7 +234,7 @@ async function loadCodeforces(card, handle) {
         if (data.status !== "OK") throw new Error("cf rating error");
         setStat(card, "contests", data.result.length);
     } catch (err) {
-        setStat(card, "contests", "N/A");
+        setStat(card, "contests", null);
     }
 
     try {
@@ -193,44 +242,46 @@ async function loadCodeforces(card, handle) {
         const data = await res.json();
         if (data.status !== "OK") throw new Error("cf status error");
         const solved = new Set();
-        data.result.forEach(sub => {
+        data.result.forEach((sub) => {
             if (sub.verdict !== "OK") return;
             const p = sub.problem;
             solved.add((p.contestId ?? p.problemsetName ?? "?") + "-" + p.index);
         });
         setStat(card, "solved", applySolvedBase(card, solved.size));
     } catch (err) {
+        // API unreachable: show the profile figure, but don't claim it is live.
         const base = Number(card.dataset.solvedBase);
-        setStat(card, "solved", Number.isFinite(base) ? base : "N/A");
+        setStat(card, "solved", Number.isFinite(base) ? base : null, false);
     }
+
+    finishCard(card, "Codeforces");
 }
 
 async function loadAtcoder(card, handle) {
-    setUpdatedNow(card);
-    setStat(card, "friends", "N/A");
     try {
         const res = await fetch("https://atcoder.jp/users/" + encodeURIComponent(handle) + "/history/json");
         if (!res.ok) throw new Error("atc error");
         const history = await res.json();
         if (!Array.isArray(history) || history.length === 0) throw new Error("no history");
         const last = history[history.length - 1];
-        const maxRating = Math.max(...history.map(h => h.NewRating));
-        setStat(card, "rating", last.NewRating ?? "N/A");
-        setStat(card, "maxrating", maxRating ?? "N/A");
+        setStat(card, "rating", last.NewRating);
+        setStat(card, "maxrating", Math.max(...history.map((h) => h.NewRating)));
         setStat(card, "contests", history.length);
     } catch (err) {
-        setStat(card, "rating", "N/A");
-        setStat(card, "maxrating", "N/A");
-        setStat(card, "contests", "N/A");
+        setStat(card, "rating", null);
+        setStat(card, "maxrating", null);
+        setStat(card, "contests", null);
     }
 
     try {
         const res = await fetch("https://kenkoooo.com/atcoder/atcoder-api/v3/user/ac_rank?user=" + encodeURIComponent(handle));
         const data = await res.json();
-        setStat(card, "solved", data.count ?? "N/A");
+        setStat(card, "solved", data.count);
     } catch (err) {
-        setStat(card, "solved", "N/A");
+        setStat(card, "solved", null);
     }
+
+    finishCard(card, "AtCoder");
 }
 
 document.querySelectorAll(".cp-detail-card").forEach((card) => {

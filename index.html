@@ -3,19 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pritom Kumar Sen Anom — ICT Undergraduate Student | Competitive Programmer | Problem Solver." />
+  <title>Pritom Kumar Sen Anom | ICT Student and Competitive Programmer</title>
+  <meta name="description" content="Pritom Kumar Sen Anom is an ICT undergraduate at MBSTU, Bangladesh. Competitive programmer on Codeforces, building projects in Java and C, and exploring AI and software engineering." />
+  <meta name="author" content="Pritom Kumar Sen Anom" />
   <meta name="theme-color" content="#0f766e" />
-  <meta property="og:title" content="Pritom Kumar Sen Anom" />
-  <meta property="og:description" content="ICT Student | Competitive Programmer | Problem Solver | AI | Software Engineering" />
+  <link rel="canonical" href="https://anom-27.github.io/" />
   <meta property="og:type" content="website" />
-  <title>Pritom Kumar Sen Anom</title>
+  <meta property="og:url" content="https://anom-27.github.io/" />
+  <meta property="og:title" content="Pritom Kumar Sen Anom | ICT Student and Competitive Programmer" />
+  <meta property="og:description" content="ICT undergraduate at MBSTU. Competitive programmer on Codeforces, building projects in Java and C, exploring AI and software engineering." />
+  <meta property="og:image" content="https://anom-27.github.io/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <script>
+    // Apply the saved theme before first paint so the page never flashes light.
+    try {
+      if (localStorage.getItem("theme") !== "light") document.documentElement.dataset.theme = "dark";
+    } catch (e) {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pritom Kumar Sen Anom",
+    "url": "https://anom-27.github.io/",
+    "image": "https://anom-27.github.io/profile.jpg",
+    "jobTitle": "Undergraduate student",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "Mawlana Bhashani Science and Technology University"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tangail",
+      "addressCountry": "BD"
+    },
+    "sameAs": [
+      "https://github.com/Anom-27",
+      "https://www.linkedin.com/in/pritom-sen-96684433a",
+      "https://codeforces.com/profile/Anom27",
+      "https://atcoder.jp/users/Anom27"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#about">Skip to content</a>
   <div class="bg-grid"></div>
   <header class="site-header" id="top">
     <div class="container nav-wrap">
@@ -45,13 +86,13 @@
           <p class="eyebrow">Academic Portfolio</p>
           <h1>Pritom Kumar Sen Anom</h1>
           <p class="lead">
-            ICT Student | Competitive Programmer | Problem Solver | AI | Software Engineering
+            ICT Undergraduate | Competitive Programmer | Problem Solver
           </p>
           <p class="motto">
-            Exploring the IT sector — building a strong foundation in programming and problem solving, with a growing interest in artificial intelligence and software engineering.
+            I turn hard problems into clean, working code. I solve on Codeforces, build projects in Java and C, and explore AI and software engineering at MBSTU.
           </p>
 
-          <div class="hero-actions">
+          <div class="hero-actions" id="resumeActions">
             <a class="btn btn-primary" href="resume.pdf" download>Download Resume</a>
           </div>
 
@@ -62,10 +103,10 @@
             </div>
             <div class="stat-card">
               <span class="stat-label">Focus Areas</span>
-              <span class="stat-value">IT Field</span>
+              <span class="stat-value">CP, Java, AI</span>
             </div>
             <div class="stat-card">
-              <span class="stat-label">Graduation</span>
+              <span class="stat-label">Expected graduation</span>
               <span class="stat-value">2028</span>
             </div>
           </div>
@@ -73,7 +114,7 @@
 
         <div class="hero-portrait reveal">
           <div class="portrait-card">
-            <img src="profile.png" alt="Pritom Kumar Sen Anom portrait" />
+            <img src="profile.jpg" width="840" height="1082" fetchpriority="high" decoding="async" alt="Portrait of Pritom Kumar Sen Anom" />
           </div>
         </div>
       </div>
@@ -88,16 +129,13 @@
         <div class="two-col">
           <div class="card reveal">
             <p>
-              I'm an undergraduate student in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University, Bangladesh, currently in my second year (Session 2023-2024).
+              I'm an undergraduate student in the Department of Information and Communication Technology (ICT) at Mawlana Bhashani Science and Technology University (MBSTU), Bangladesh. My session is 2023-2024 and I expect to graduate in 2028.
             </p>
             <p>
-              I'm a competitive programmer who enjoys turning hard problems into clean, working code. I'm actively solving on Codeforces to sharpen my algorithmic thinking and strengthen my grasp of data structures and problem-solving patterns.
+              I'm a competitive programmer. I solve problems on Codeforces to sharpen my algorithmic thinking, and I enjoy turning a hard problem into clean, working code. Every unsolved problem is one correct approach away.
             </p>
             <p>
-              Alongside competitive programming, I'm exploring Artificial Intelligence, Software Engineering, and Intelligent Systems through continuous learning and hands-on development, steadily building a broad foundation across the IT field.
-            </p>
-            <p>
-              I believe every unsolved problem is just one correct approach away — that mindset drives how I learn and how I code.
+              Alongside contests, I build projects in Java and C and explore artificial intelligence and software engineering. My goal is to build a broad foundation now so I can specialize with confidence later.
             </p>
           </div>
 
@@ -177,21 +215,21 @@
             </div>
           </article>
           <article class="card reveal">
-            <h3>Tools</h3>
+            <h3>Web &amp; Database</h3>
             <div class="chips">
-              <span>Git (Basic)</span><span>GitHub</span><span>VS Code</span><span>Code::Blocks</span><span>IntelliJ IDEA</span>
+              <span>JSP</span><span>Servlets</span><span>JDBC</span><span>MySQL</span>
             </div>
           </article>
           <article class="card reveal">
-            <h3>Productivity</h3>
+            <h3>Tools &amp; Productivity</h3>
             <div class="chips">
-              <span>Microsoft Word</span><span>Excel</span><span>PowerPoint</span><span>Canva</span>
+              <span>Git (Basic)</span><span>GitHub</span><span>VS Code</span><span>Code::Blocks</span><span>IntelliJ IDEA</span><span>Maven</span><span>Microsoft Word</span><span>Excel</span><span>PowerPoint</span><span>Canva</span>
             </div>
           </article>
           <article class="card reveal">
-            <h3>Systems & Concepts</h3>
+            <h3>Systems &amp; Concepts</h3>
             <div class="chips">
-              <span>Data Structures & Algorithms</span><span>OOP</span><span>Operating Systems</span><span>Computer Networking</span><span>Linux (Ubuntu)</span><span>File Handling in C/C++</span>
+              <span>Data Structures &amp; Algorithms</span><span>OOP</span><span>Operating Systems</span><span>Computer Networking</span><span>Linux (Ubuntu)</span><span>File Handling in C/C++</span>
             </div>
           </article>
         </div>
@@ -208,7 +246,7 @@
           <article class="project-card reveal">
             <p class="project-tag">Web Project</p>
             <h3>Tangail District Knowledge Quiz</h3>
-            <p>A Servlet, JSP and JDBC based quiz web app where players answer 10 random questions from a pool of 50. This quiz covering Tangail District's history, culture, geography and academic institutions. Includes a full admin panel for managing questions, players and attempt history with scores and question-by-question review saved in MySQL.</p>
+            <p>A Servlet, JSP and JDBC based quiz web app where players answer 10 random questions from a pool of 50. The quiz covers Tangail District's history, culture, geography and academic institutions. It includes a full admin panel for managing questions, players and attempt history, and it saves scores and a question-by-question review in MySQL.</p>
             <div class="chips">
               <span>Java</span><span>JSP</span><span>Servlet</span><span>JDBC</span><span>MySQL</span><span>Maven</span>
             </div>
@@ -216,23 +254,16 @@
               <a href="https://github.com/Anom-27/Quiz-Game" target="_blank" rel="noreferrer">GitHub ↗</a>
             </div>
           </article>
-<article class="project-card reveal">
-<p class="project-tag">C Project</p>
-<h3>Memory Game</h3>
-<p>A console-based memory matching game built in C, where players flip and match hidden pairs within limited attempts. Includes a compiled executable and a project presentation covering the game logic and design.</p>
-<div class="chips">
-<span>C</span><span>Console App</span><span>Game Logic</span>
-</div>
-<div class="project-links">
-<a href="https://github.com/Anom-27/Memory-Game" target="_blank" rel="noreferrer">GitHub ↗</a>
-</div>
-</article>
+
           <article class="project-card reveal">
-            <p class="project-tag">Coming Soon</p>
-            <h3>More Projects in Progress</h3>
-            <p>Currently building more projects while sharpening core programming and problem-solving skills. New work will be added here soon — stay tuned!</p>
+            <p class="project-tag">C Project</p>
+            <h3>Memory Game</h3>
+            <p>A console-based memory matching game built in C, where players flip and match hidden pairs within limited attempts. Includes a compiled executable and a project presentation covering the game logic and design.</p>
             <div class="chips">
-              <span>C</span><span>C++</span><span>Java</span>
+              <span>C</span><span>Console App</span><span>Game Logic</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Anom-27/Memory-Game" target="_blank" rel="noreferrer">GitHub ↗</a>
             </div>
           </article>
         </div>
@@ -291,7 +322,7 @@
                 </div>
               </div>
             </div>
-            <p class="cp-detail-footer" data-field="updated">Updated: — · Keep solving, keep improving.</p>
+            <p class="cp-detail-footer" data-field="updated">Loading live stats from Codeforces.</p>
           </a>
 
           <a class="cp-detail-card reveal" href="https://atcoder.jp/users/Anom27" target="_blank" rel="noreferrer" data-cp="atcoder" data-handle="Anom27">
@@ -309,10 +340,6 @@
                 <div class="cp-detail-row">
                   <span class="cp-detail-label">Handle</span>
                   <span class="cp-detail-value cp-detail-link">Anom27</span>
-                </div>
-                <div class="cp-detail-row">
-                  <span class="cp-detail-label">Friends</span>
-                  <span class="cp-detail-value" data-field="friends">—</span>
                 </div>
                 <div class="cp-detail-row">
                   <span class="cp-detail-label">Contests</span>
@@ -334,7 +361,7 @@
                 </div>
               </div>
             </div>
-            <p class="cp-detail-footer" data-field="updated">Updated: — · Keep solving, keep improving.</p>
+            <p class="cp-detail-footer" data-field="updated">Loading live stats from AtCoder.</p>
           </a>
         </div>
 
@@ -342,7 +369,7 @@
         <div class="achievement-grid">
           <article class="achievement-card reveal">
             <a class="achievement-img" href="certificate.jpg" target="_blank" rel="noreferrer">
-              <img src="certificate.jpg" alt="Certificate of Achievement - ICT Intra-Department Junior Programming Contest Series-2" loading="lazy" />
+              <img src="certificate.jpg" width="1600" height="1198" alt="Certificate of Achievement - ICT Intra-Department Junior Programming Contest Series-2" loading="lazy" />
             </a>
             <div class="achievement-body">
               <p class="achievement-tag">Certificate</p>
@@ -353,7 +380,7 @@
 
           <article class="achievement-card reveal">
             <a class="achievement-img" href="crest.jpg" target="_blank" rel="noreferrer">
-              <img src="crest.jpg" alt="Champion Crest - Intra-Department Junior Programming Contest Series-2" loading="lazy" />
+              <img src="crest.jpg" width="1198" height="1600" alt="Champion Crest - Intra-Department Junior Programming Contest Series-2" loading="lazy" />
             </a>
             <div class="achievement-body">
               <p class="achievement-tag">Crest</p>
@@ -364,7 +391,7 @@
 
           <article class="achievement-card reveal">
             <a class="achievement-img" href="participation.jpg" target="_blank" rel="noreferrer">
-              <img src="participation.jpg" alt="Breaking Code 2.0 Programming Contest participation" loading="lazy" />
+              <img src="participation.jpg" width="2048" height="1154" alt="Breaking Code 2.0 Programming Contest participation" loading="lazy" />
             </a>
             <div class="achievement-body">
               <p class="achievement-tag">Participation</p>
@@ -372,34 +399,6 @@
               <p>3rd Academic Building, Department of CSE, MBSTU · 24 January, 2026. Organized by Department of CSE, MBSTU.</p>
             </div>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="community">
-      <div class="container">
-        <div class="two-col">
-          <div class="card reveal">
-            <p class="eyebrow">Competitive Programming</p>
-            <h2>Problem solving journey</h2>
-            <p>
-              Competitive programming is one of the main ways I sharpen my logic and strengthen my grasp of data structures and algorithms. I'm actively solving on Codeforces, steadily building speed, accuracy, and a deeper understanding of core CS fundamentals — every unsolved problem is just one correct approach away.
-            </p>
-          </div>
-
-          <div class="card reveal">
-            <p class="eyebrow">Research Interests</p>
-            <h2>Future Direction</h2>
-            <p>
-              I'm drawn to building practical, well-engineered software, exploring Artificial Intelligence and Intelligent Systems alongside Software Engineering. I'm building a broad foundation now so I can specialize with confidence later.
-            </p>
-            <div class="chips" style="margin-top:20px; margin-bottom:25px;">
-              <span>Artificial Intelligence</span>
-              <span>Intelligent Systems</span>
-              <span>Software Engineering</span>
-              <span>Competitive Programming</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -459,7 +458,7 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <p>© 2026 Pritom Kumar Sen Anom</p>
+      <p>© <span id="year">2026</span> Pritom Kumar Sen Anom</p>
     </div>
   </footer>
 
